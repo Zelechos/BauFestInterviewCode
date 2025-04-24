@@ -1,0 +1,20 @@
+server:
+  port: 8080
+  tomcat:
+    threads:
+      max: 200
+      min-spare: 50
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  metrics:
+    tags:
+      application: order-processing-service
+
+logging:
+  level:
+    root: INFO
+    com.example.order_processing: DEBUG
