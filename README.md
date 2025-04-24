@@ -22,3 +22,7 @@ Para mejorar aún más el rendimiento, podríamos considerar:
 2. **Caching**: Añadir Redis para cachear pedidos frecuentes.
 3. **Particionamiento**: Dividir el procesamiento por tipo de cliente o categoría de producto.
 4. **Batch Processing**: Procesar pedidos en lotes para operaciones que lo permitan.
+
+## Reporte de Covertura de tests 
+![image](https://github.com/user-attachments/assets/d9f3f0d4-4793-4869-b6f1-74caa13f85c2)
+
