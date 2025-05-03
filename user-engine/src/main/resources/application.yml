@@ -1,0 +1,31 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:userdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+    initialization-mode: always  # <-- Nueva línea clave
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    defer-datasource-initialization: true  # <-- Nueva línea clave
+  sql:
+    init:
+      mode: never  # <-- Nueva sección clave
+      platform: h2
+
+jwt:
+  secret: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMjVkNTYxOS02ZGU3LTRiNmMtODgyMS0xZGZiYWIwMjUyMzYiLCJpYXQiOjE3NDYzMDg3NTQsImV4cCI6MTc0NjMxMjM1NH0.DRbKcoK9Ccz3uhOm1hCyP8_K88yiPDcK5naFEfYfAEUpEb69FTSZ-V7PCn_NsvRAzyQPjr62AjWCtd9rbPg1Rg
+  expiration: 3600 # 1 hour
