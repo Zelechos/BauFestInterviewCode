@@ -27,5 +27,4 @@ spring:
       platform: h2
 
 jwt:
-  secret: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMjVkNTYxOS02ZGU3LTRiNmMtODgyMS0xZGZiYWIwMjUyMzYiLCJpYXQiOjE3NDYzMDg3NTQsImV4cCI6MTc0NjMxMjM1NH0.DRbKcoK9Ccz3uhOm1hCyP8_K88yiPDcK5naFEfYfAEUpEb69FTSZ-V7PCn_NsvRAzyQPjr62AjWCtd9rbPg1Rg
   expiration: 3600 # 1 hour

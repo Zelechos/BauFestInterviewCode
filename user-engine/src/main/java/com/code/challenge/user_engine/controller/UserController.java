@@ -33,7 +33,7 @@ public class UserController {
                     .body(Collections.singletonList(
                             ErrorResponse.builder()
                                     .timestamp(LocalDateTime.now())
-                                    .codigo(HttpStatus.CONFLICT.value())
+                                    .code(HttpStatus.CONFLICT.value())
                                     .detail(e.getMessage())
                                     .build()));
         } catch (InvalidDataException e) {
@@ -41,7 +41,7 @@ public class UserController {
                     .body(Collections.singletonList(
                             ErrorResponse.builder()
                                     .timestamp(LocalDateTime.now())
-                                    .codigo(HttpStatus.BAD_REQUEST.value())
+                                    .code(HttpStatus.BAD_REQUEST.value())
                                     .detail(e.getMessage())
                                     .build()));
         }
@@ -58,7 +58,7 @@ public class UserController {
                     .body(Collections.singletonList(
                             ErrorResponse.builder()
                                     .timestamp(LocalDateTime.now())
-                                    .codigo(HttpStatus.UNAUTHORIZED.value())
+                                    .code(HttpStatus.UNAUTHORIZED.value())
                                     .detail(e.getMessage())
                                     .build()));
         }

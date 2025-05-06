@@ -7,7 +7,6 @@ plugins {
 
 group = 'com.code.challenge'
 version = '0.0.1-SNAPSHOT'
-//sourceCompatibility = '11'
 
 java {
     toolchain {
@@ -40,13 +39,13 @@ dependencies {
 
     // Testing
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
-    testImplementation 'org.spockframework:spock-spring:2.0-groovy-3.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+    testImplementation 'org.powermock:powermock-reflect:2.0.9'
 }
 
 test {
-    //useJUnitPlatform()
-    //finalizedBy jacocoTestReport
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
 }
 
 jacocoTestReport {
@@ -55,16 +54,5 @@ jacocoTestReport {
         xml.required = true
         csv.required = false
         html.required = true
-    }
-
-    afterEvaluate {
-        classDirectories.setFrom(files(classDirectories.files.collect {
-            fileTree(dir: it, exclude: [
-                    'com/code/challenge/user_service/UserEngineApplication.class',
-                    'com/code/challenge/user_service/dto/**',
-                    'com/code/challenge/user_service/model/**',
-                    'com/code/challenge/user_service/exception/**'
-            ])
-        }))
     }
 }

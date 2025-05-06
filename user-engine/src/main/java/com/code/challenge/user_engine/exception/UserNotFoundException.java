@@ -14,10 +14,4 @@ public class UserNotFoundException extends RuntimeException {
         this.email = email;
         this.userId = null;
     }
-
-    public UserNotFoundException(UUID userId) {
-        super("User with ID " + userId + " not found");
-        this.userId = userId;
-        this.email = null;
-    }
 }

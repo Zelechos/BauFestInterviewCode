@@ -22,10 +22,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     }
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request,
-                                    HttpServletResponse response,
-                                    FilterChain filterChain)
-            throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
         String path = request.getRequestURI();
         if (path.startsWith("/api/v1/users/sign-up") || path.startsWith("/h2-console")) {
@@ -39,8 +36,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 UUID userId = jwtTokenUtil.getUserIdFromToken(token);
 
                 // Crear autenticación y establecerla en el contexto de seguridad
-                JwtAuthenticationToken authentication =
-                        new JwtAuthenticationToken(userId, token);
+                JwtAuthenticationToken authentication = new JwtAuthenticationToken(userId, token);
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
 
@@ -51,7 +47,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
     }
 
-    private String extractToken(HttpServletRequest request) {
+    public String extractToken(HttpServletRequest request) {
         String bearerToken = request.getHeader("Authorization");
         if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
             return bearerToken.substring(7);

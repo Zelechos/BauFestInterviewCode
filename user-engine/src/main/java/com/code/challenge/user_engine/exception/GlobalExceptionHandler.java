@@ -19,7 +19,7 @@ public class GlobalExceptionHandler {
         List<ErrorResponse> errors = ex.getBindingResult().getFieldErrors().stream()
                 .map(error -> ErrorResponse.builder()
                         .timestamp(LocalDateTime.now())
-                        .codigo(HttpStatus.BAD_REQUEST.value())
+                        .code(HttpStatus.BAD_REQUEST.value())
                         .detail(error.getField() + ": " + error.getDefaultMessage())
                         .build())
                 .collect(Collectors.toList());
@@ -31,7 +31,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<List<ErrorResponse>> handleBadRequestExceptions(RuntimeException ex) {
         ErrorResponse error = ErrorResponse.builder()
                 .timestamp(LocalDateTime.now())
-                .codigo(HttpStatus.BAD_REQUEST.value())
+                .code(HttpStatus.BAD_REQUEST.value())
                 .detail(ex.getMessage())
                 .build();
 
@@ -42,7 +42,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<List<ErrorResponse>> handleUserNotFoundException(UserNotFoundException ex) {
         ErrorResponse error = ErrorResponse.builder()
                 .timestamp(LocalDateTime.now())
-                .codigo(HttpStatus.NOT_FOUND.value())
+                .code(HttpStatus.NOT_FOUND.value())
                 .detail(ex.getMessage())
                 .build();
 
@@ -50,21 +50,21 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(InvalidTokenException.class)
-    public ResponseEntity<List<ErrorResponse>> handleInvalidTokenException(InvalidTokenException ex) {
+    public ResponseEntity<ErrorResponse> handleInvalidTokenException(InvalidTokenException ex) {
         ErrorResponse error = ErrorResponse.builder()
                 .timestamp(LocalDateTime.now())
-                .codigo(HttpStatus.UNAUTHORIZED.value())
+                .code(HttpStatus.UNAUTHORIZED.value())
                 .detail(ex.getMessage())
                 .build();
 
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(List.of(error));
+        return new ResponseEntity<>(error, HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<List<ErrorResponse>> handleGenericException(Exception ex) {
         ErrorResponse error = ErrorResponse.builder()
                 .timestamp(LocalDateTime.now())
-                .codigo(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                .code(HttpStatus.INTERNAL_SERVER_ERROR.value())
                 .detail("Internal server error: " + ex.getMessage())
                 .build();
 

@@ -1,6 +1,8 @@
 package com.code.challenge.user_engine.model;
 
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -14,7 +16,9 @@ import java.util.UUID;
 @Builder
 public class User {
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(columnDefinition = "BINARY(16)")
     private UUID id;
 
     private String name;

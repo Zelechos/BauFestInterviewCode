@@ -9,6 +9,6 @@ import java.time.LocalDateTime;
 @Builder
 public class ErrorResponse {
     private LocalDateTime timestamp;
-    private int codigo;
+    private int code;
     private String detail;
 }
