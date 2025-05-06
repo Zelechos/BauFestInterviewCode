@@ -14,8 +14,7 @@
 1. **Base de datos H2**: 
    - Accesible en `/h2-console`
    - JDBC URL: `jdbc:h2:mem:userdb`
-   - User: `sa`
-   - Password: `password`
+   
 
 2. **Variables de entorno**:
    - `JWT_SECRET`: Clave secreta para JWT (default: mySecretKey)
@@ -23,13 +22,14 @@
 
 3. **Perfiles**:
    - `dev`: Habilita H2 console y muestra SQL
-   - `prod`: Configuración para producción
 
 ## API Documentation
 
 La documentación interactiva está disponible en:
-- Swagger UI: `http://localhost:8080/swagger-ui.html`
-- OpenAPI JSON: `http://localhost:8080/v3/api-docs`
+- POST: `http://localhost:8080/api/v1/users/sign-up`
+- GET: `http://localhost:8080/api/v1/users/login`
+   El metodo GET funcion con un Header de Authorization = Bearer "token"
+     
 
 ## Ejemplos de Uso
 
