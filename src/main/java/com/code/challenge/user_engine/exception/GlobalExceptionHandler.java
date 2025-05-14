@@ -14,19 +14,6 @@ import java.util.stream.Collectors;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<List<ErrorResponse>> handleValidationExceptions(MethodArgumentNotValidException ex) {
-        List<ErrorResponse> errors = ex.getBindingResult().getFieldErrors().stream()
-                .map(error -> ErrorResponse.builder()
-                        .timestamp(LocalDateTime.now())
-                        .code(HttpStatus.BAD_REQUEST.value())
-                        .detail(error.getField() + ": " + error.getDefaultMessage())
-                        .build())
-                .collect(Collectors.toList());
-
-        return ResponseEntity.badRequest().body(errors);
-    }
-
     @ExceptionHandler({UserAlreadyExistsException.class, InvalidDataException.class})
     public ResponseEntity<List<ErrorResponse>> handleBadRequestExceptions(RuntimeException ex) {
         ErrorResponse error = ErrorResponse.builder()
@@ -47,17 +34,6 @@ public class GlobalExceptionHandler {
                 .build();
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(List.of(error));
-    }
-
-    @ExceptionHandler(InvalidTokenException.class)
-    public ResponseEntity<ErrorResponse> handleInvalidTokenException(InvalidTokenException ex) {
-        ErrorResponse error = ErrorResponse.builder()
-                .timestamp(LocalDateTime.now())
-                .code(HttpStatus.UNAUTHORIZED.value())
-                .detail(ex.getMessage())
-                .build();
-
-        return new ResponseEntity<>(error, HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(Exception.class)

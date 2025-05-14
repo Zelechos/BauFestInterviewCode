@@ -53,7 +53,6 @@ public class UserController {
             UserResponse response = userService.login(token.replace("Bearer ", ""));
             return ResponseEntity.ok(response);
         } catch (InvalidTokenException | UserNotFoundException e) {
-            System.out.println("Current Exception => " + e);
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(Collections.singletonList(
                             ErrorResponse.builder()
